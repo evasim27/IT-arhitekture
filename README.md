@@ -23,7 +23,7 @@ Sistem je zasnovan kot **mikrostoritvena arhitektura**, ki vključuje:
 
 ## storitev-izdelki
 
-Skrbi za upravljanje kataloga izdelkov. Uporablja REST API.
+Skrbi za upravljanje kataloga izdelkov.
 
 ### Funkcionalnosti
 
@@ -33,7 +33,7 @@ Skrbi za upravljanje kataloga izdelkov. Uporablja REST API.
 
 ## storitev-trgovine
 
-Upravlja podatke o trgovinah ter cene izdelkov v posamezni trgovini. Uporablja REST API.
+Upravlja podatke o trgovinah ter cene izdelkov v posamezni trgovini.
 
 ### Funkcionalnosti
 
@@ -43,7 +43,7 @@ Upravlja podatke o trgovinah ter cene izdelkov v posamezni trgovini. Uporablja R
 
 ## storitev-primerjava-cen
 
-Primerja cene izdelkov v različnih trgovinah in izračuna najnižjo ceno. Uporablja gRPC.
+Primerja cene izdelkov v različnih trgovinah in izračuna najnižjo ceno.
 
 ### Funkcionalnosti
 
