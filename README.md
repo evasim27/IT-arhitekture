@@ -53,24 +53,25 @@ Primerja cene izdelkov v različnih trgovinah in izračuna najnižjo ceno. Upora
 
 Na spodnjem diagramu je prikazana arhitektura in komunikacije med mikrostoritvami.
 
-![PriceScout arhitektura] (//www.plantuml.com/plantuml/png/ZP91JiCm44NtSufHzhq02rHIkkWkQa1TJvnHv3gnex4Rf28axi09E0mNuIGu8n1LAr2pYkp_t_pvyZ8cadGOUe1aKy-uQNbF-FdwXfLOmxK9XmH09WN1efJegFVM5KWHImbFaGL0s2JoNNONZsCGQhpzU7SMfu6ZYfy1ysV2C0RFFc6nMvT8OsyT6RidfUsuWHU0RoWk5hTw12CPHrr6_-R1Q6FYOUQUW-kSqoQUT0DxRBbtLl6LXFPWKiqoPSo_jYHTcAndzSqtV8rh53kmx6aYDEpLkyfI4Xk3_m4eeQL43SLvfP3_NPWyOKD7EWrwNrwXrN1PEHUNozBIBeRY3MxNzGFULHk0YrlrAETI_eVwj4hLTzjg1N1sVABC2NN2-KYDlcJVvlVt1G00)
+![PriceScout arhitektura](https://www.plantuml.com/plantuml/png/ZP91JiCm44NtSufHzhq02rHIkkWkQa1TJvnHv3gnex4Rf28axi09E0mNuIGu8n1LAr2pYkp_t_pvyZ8cadGOUe1aKy-uQNbF-FdwXfLOmxK9XmH09WN1efJegFVM5KWHImbFaGL0s2JoNNONZsCGQhpzU7SMfu6ZYfy1ysV2C0RFFc6nMvT8OsyT6RidfUsuWHU0RoWk5hTw12CPHrr6_-R1Q6FYOUQUW-kSqoQUT0DxRBbtLl6LXFPWKiqoPSo_jYHTcAndzSqtV8rh53kmx6aYDEpLkyfI4Xk3_m4eeQL43SLvfP3_NPWyOKD7EWrwNrwXrN1PEHUNozBIBeRY3MxNzGFULHk0YrlrAETI_eVwj4hLTzjg1N1sVABC2NN2-KYDlcJVvlVt1G00)
 
 # Struktura repozitorija
 
+```
 price-scout
 │
 ├── README.md
-│
 ├── web-aplikacija
 │   └── src
 │
 ├── storitev-izdelki
+│   ├── src
 │   └── db
-│   └── src
 │
 ├── storitev-trgovine
+│   ├── src
 │   └── db
-│   └── src
 │
 └── storitev-primerjava-cen
-│   └── src
+    └── src
+```
