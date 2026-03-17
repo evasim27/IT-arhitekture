@@ -1,9 +1,12 @@
+from app import crud, schemas
+
+
 def test_create_product(client):
     response = client.post(
         "/products",
         json={
             "name": "Nutella 750g",
-            "description": "Lešnikov namaz",
+            "description": "Lesnikov namaz",
             "category": "Namazi",
         },
     )
@@ -89,3 +92,29 @@ def test_delete_product(client):
 
     assert delete_response.status_code == 204
     assert get_deleted_response.status_code == 404
+
+
+def test_create_and_get_product(db_session):
+    product_in = schemas.ProductCreate(
+        name="Nutella 750g",
+        description="Lesnikov namaz",
+        category="Napoji in namazi",
+    )
+
+    created = crud.create_product(db_session, product_in)
+    fetched = crud.get_product_by_id(db_session, created.id)
+
+    assert created.id is not None
+    assert fetched is not None
+    assert fetched.name == "Nutella 750g"
+
+
+def test_search_products_by_partial_name(db_session):
+    crud.create_product(db_session, schemas.ProductCreate(name="Nutella 350g", category="Namazi"))
+    crud.create_product(db_session, schemas.ProductCreate(name="Bio Nutella Mix", category="Namazi"))
+    crud.create_product(db_session, schemas.ProductCreate(name="Marmelada", category="Namazi"))
+
+    results = crud.search_products_by_name(db_session, "nutella")
+
+    assert len(results) == 2
+    assert all("nutella" in product.name.lower() for product in results)
