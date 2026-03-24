@@ -13,8 +13,8 @@ describe("gRPC PriceComparisonService", () => {
   beforeAll(async () => {
     const storeClient = new MockStoreServiceClient({
       "1": [
-        { store_id: "lidl", store_name: "Lidl", price: 6.49, currency: "EUR" },
-        { store_id: "spar", store_name: "Spar", price: 6.99, currency: "EUR" },
+        { store_id: 1, store_name: "Lidl", price: 6.49, currency: "EUR" },
+        { store_id: 2, store_name: "Spar", price: 6.99, currency: "EUR" },
       ],
       "3": [],
     });

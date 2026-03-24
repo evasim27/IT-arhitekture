@@ -14,9 +14,9 @@ describe("PriceComparisonService", () => {
   test("returns lowest price from a list", () => {
     const service = new PriceComparisonService({}, logger);
     const prices = [
-      { store_id: "a", store_name: "A", price: 5.99, currency: "EUR" },
-      { store_id: "b", store_name: "B", price: 4.49, currency: "EUR" },
-      { store_id: "c", store_name: "C", price: 6.19, currency: "EUR" },
+      { store_id: 1, store_name: "A", price: 5.99, currency: "EUR" },
+      { store_id: 2, store_name: "B", price: 4.49, currency: "EUR" },
+      { store_id: 3, store_name: "C", price: 6.19, currency: "EUR" },
     ];
 
     const result = service.getLowestPrice(prices);
@@ -45,8 +45,8 @@ describe("PriceComparisonService", () => {
   test("compareProduct returns prices and lowest price", async () => {
     const mockClient = {
       getPricesForProduct: jest.fn().mockResolvedValue([
-        { store_id: "a", store_name: "A", price: 9.99, currency: "EUR" },
-        { store_id: "b", store_name: "B", price: 8.99, currency: "EUR" },
+        { store_id: 1, store_name: "A", price: 9.99, currency: "EUR" },
+        { store_id: 2, store_name: "B", price: 8.99, currency: "EUR" },
       ]),
     };
     const service = new PriceComparisonService(mockClient, logger);
