@@ -29,7 +29,8 @@ Skrbi za upravljanje kataloga izdelkov.
 
 - dodajanje izdelkov
 - iskanje izdelkov
-- pregled podrobnosti izdelka
+- urejanje izdelkov
+- brisanje izdelkov
 
 ## storitev-trgovine
 
@@ -61,12 +62,12 @@ Na spodnjem diagramu je prikazana arhitektura in komunikacije med mikrostoritvam
 price-scout
 │
 ├── README.md
-├── web-aplikacija
+├── uporabniski-vmesnik
 │   └── src
 │
 ├── storitev-izdelki
-│   ├── src
-│   └── db
+│   ├── app
+│   └── tests
 │
 ├── storitev-trgovine
 │   ├── src

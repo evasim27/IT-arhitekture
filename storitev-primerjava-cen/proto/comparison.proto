@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package pricescout.comparison;
+
+message ProductRequest {
+  string product_id = 1;
+}
+
+message PriceInfo {
+  string store_id = 1;
+  string store_name = 2;
+  double price = 3;
+  string currency = 4;
+}
+
+message PricesForProductResponse {
+  string product_id = 1;
+  repeated PriceInfo prices = 2;
+  PriceInfo lowest_price = 3;
+  bool has_prices = 4;
+}
+
+message LowestPriceResponse {
+  string product_id = 1;
+  PriceInfo lowest_price = 2;
+  bool has_price = 3;
+}
+
+service PriceComparisonService {
+  rpc GetPricesForProduct(ProductRequest) returns (PricesForProductResponse);
+  rpc GetLowestPrice(ProductRequest) returns (LowestPriceResponse);
+}

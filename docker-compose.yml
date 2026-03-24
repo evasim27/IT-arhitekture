@@ -18,6 +18,17 @@ services:
       rabbitmq:
         condition: service_healthy
 
+  comparison-service:
+    build:
+      context: ./storitev-primerjava-cen
+    container_name: pricescout-comparison-service
+    ports:
+      - "50051:50051"
+    environment:
+      GRPC_HOST: ${GRPC_HOST:-0.0.0.0}
+      GRPC_PORT: ${GRPC_PORT:-50051}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
   postgres:
     image: postgres:16-alpine
     container_name: pricescout-products-db
