@@ -29,6 +29,30 @@ services:
       GRPC_PORT: ${GRPC_PORT:-50051}
       LOG_LEVEL: ${LOG_LEVEL:-info}
 
+  store-service:
+    build:
+      context: ./storitev-trgovine
+    container_name: pricescout-store-service
+    ports:
+      - "8082:8082"
+    environment:
+      SERVER_PORT: ${STORE_SERVER_PORT:-8082}
+      R2DBC_URL: ${STORE_R2DBC_URL:-r2dbc:postgresql://postgres-stores:5432/stores_db}
+      DB_USER: ${STORE_DB_USER:-pricescout}
+      DB_PASSWORD: ${STORE_DB_PASSWORD:-pricescout}
+      RABBITMQ_HOST: ${STORE_RABBITMQ_HOST:-rabbitmq}
+      RABBITMQ_PORT: ${STORE_RABBITMQ_PORT:-5672}
+      RABBITMQ_USER: ${RABBITMQ_DEFAULT_USER:?RABBITMQ_DEFAULT_USER is required}
+      RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS:?RABBITMQ_DEFAULT_PASS is required}
+      STORE_RABBIT_EXCHANGE: ${STORE_RABBIT_EXCHANGE:-pricescout.events}
+      STORE_RABBIT_QUEUE: ${STORE_RABBIT_QUEUE:-price_events}
+      STORE_RABBIT_ROUTING_KEY: ${STORE_RABBIT_ROUTING_KEY:-prices.price-changed}
+    depends_on:
+      postgres-stores:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
   postgres:
     image: postgres:16-alpine
     container_name: pricescout-products-db
@@ -61,5 +85,23 @@ services:
       timeout: 5s
       retries: 5
 
+  postgres-stores:
+    image: postgres:16-alpine
+    container_name: pricescout-stores-db
+    environment:
+      POSTGRES_DB: ${STORE_POSTGRES_DB:-stores_db}
+      POSTGRES_USER: ${STORE_DB_USER:-pricescout}
+      POSTGRES_PASSWORD: ${STORE_DB_PASSWORD:-pricescout}
+    ports:
+      - "5433:5432"
+    volumes:
+      - stores_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   products_pg_data:
+  stores_pg_data:

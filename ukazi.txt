@@ -1,7 +1,0 @@
-Za testiranje grpc 
-
-.\scripts\check-comparison-service.ps1 -StopAfterCheck
-
-za loge
-
-docker compose logs -f comparison-service

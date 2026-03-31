@@ -5,7 +5,8 @@ on:
     paths:
       - "Storitev-izdelki/**"
       - "storitev-primerjava-cen/**"
-      - ".github/workflows/comparison-service-tests.yml"
+      - "storitev-trgovine/**"
+      - ".github/workflows/tests.yml"
   workflow_dispatch:
 
 jobs:
@@ -54,3 +55,23 @@ jobs:
 
       - name: Run unit tests
         run: npm test
+
+  test-store-service:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: storitev-trgovine
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Build and run unit tests
+        run: mvn -B clean test

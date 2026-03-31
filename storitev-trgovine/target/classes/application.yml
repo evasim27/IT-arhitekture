@@ -1,0 +1,34 @@
+server:
+  port: ${SERVER_PORT:8082}
+
+spring:
+  application:
+    name: storitev-trgovine
+  r2dbc:
+    url: ${R2DBC_URL:r2dbc:postgresql://localhost:5433/stores_db}
+    username: ${DB_USER:pricescout}
+    password: ${DB_PASSWORD:pricescout}
+  sql:
+    init:
+      mode: always
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+logging:
+  level:
+    si.pricescout.stores: INFO
+
+app:
+  rabbitmq:
+    exchange: ${STORE_RABBIT_EXCHANGE:pricescout.events}
+    queue: ${STORE_RABBIT_QUEUE:price_events}
+    routing-key: ${STORE_RABBIT_ROUTING_KEY:prices.price-changed}
+
+springdoc:
+  swagger-ui:
+    path: /docs
+  api-docs:
+    path: /v3/api-docs
